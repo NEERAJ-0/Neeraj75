@@ -6,3 +6,7 @@ def vowels(s):
             out+=i                 
     return out
 print(vowels('neerAj'))
+
+'''
+
+'''
