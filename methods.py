@@ -19,6 +19,10 @@ class mtca:
     @classmethod
     def change_principal(cls,new):
         cls.principal=new
+        
+    @staticmethod
+    def add(a,b):
+        return a+b
 
 neeraj=mtca('neeraj',786785659,'neeraj05@gmail.com','1st')
 prashant=mtca('prashant',9342325529,'prasant@gmail.com','1st')   
