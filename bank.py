@@ -1,60 +1,72 @@
 class  Bank:
     #Bank details
-    bank_name='HDFC BANK LTD'
-    manager='Mr.Neeraj'
-    ifsc='HDFC000532'
-    branch='Palamaner'
+    bank_name = 'HDFC BANK LTD'
+    manager   = 'Mr.Neeraj'
+    ifsc      = 'HDFC000532'
+    branch    = 'Palamaner'
 
-    #Account details
-    def __init__(self,n,an,m,b):
-        self.name=n
-        self.acc_no=an
-        self.mobile=m
-        self.balance=b
+    #Account info
+    def __init__(self, n, an, m, b):
+        self.name    = n
+        self.acct_no = an
+        self.mobile  = m
+        self.balance = b
         
-    #Transactions
-    def credit(self,cr_amount):
-        self.balance+=cr_amount
-        print(cr_amount,' Credited Successfully...')
+    #credit
+    def deposit(self, cr_amount):
+        self.balance += cr_amount                         
+        print(cr_amount, ' Credited to your Account Successfully...')
 
-    def debit(self,dr_amount):
-        if dr_amount<self.balance:
-            self.balance-=dr_amount
-            print(dr_amount,' Debited fom Your Account!')
+    #debit
+    def withdraw(self, dr_amount):
+        if dr_amount <= self.balance:                      
+            self.balance -= dr_amount
+            print(dr_amount, ' Debited fom Your Account!')
         else:
             print('Insufficient Amount!')
         
-    def transfer(self,transfer_amt,recipient_name):
-        if transfer_amt>0  and  transfer_amt<=self.balance:
-                if recipient_name!=self:
-                    self.balance-=transfer_amt
-                    for acc in [ram,sita,arjun,krishna]:
-                        if acc==recipient_name:
-                            recipient_name.balance+=transfer_amt
-                            print('Transferred Successfully...')
-                            break    
-                else:
-                    print("Can't Transfer to Same Account")
+    #transfer to other Account    
+    def transfer(self, transfer_amt, recipient):
+        if transfer_amt > 0 and transfer_amt <= self.balance:
+            if recipient != self:
+                self.balance      -= transfer_amt            
+                recipient.balance += transfer_amt
+                print(f'{transfer_amt} Transferred to {recipient.name} Successfully...')
+            else:
+                print("Can't Transfer to Same Account")
         else:
-            return 'Insufficient Amount'
+            print('Insufficient Amount')
 
-    #changes in Accounts    
-    def update_mob(self,new):
-        self.mobile=new
-        print('Mobile No updated successfully...')
+    #change of Mobile.No    
+    def update_mob(self, new):
+        self.mobile = new
+        print('Mobile No updated Successfully...')
 
     #Changes in Bank
     @classmethod
-    def appoint(cls,mg):
-        cls.manager=mg
+    def appoint(cls, mg):
+        cls.manager = mg
         print('New Manager Appointed')
 
-    def change_ifsc(cls,ni):
-        cls.ifsc=ni
-        print('New IFSC Code:',ni)
+    @classmethod
+    def change_ifsc(cls, ni):
+        cls.ifsc = ni
+        print('New IFSC Code:', ni)
     
+    #Account details
+    @staticmethod
+    def account(acn):
+        print(acn.bank_name,acn.ifsc,acn.branch,acn.name,
+              acn.acct_no,acn.mobile,acn.balance,sep='\n')
 
-ram=Bank('Ram',5320001,7959253767,20000)
-sita=Bank('Sita',5320002,9949658153,5000)
-arjun=Bank('Arjun',5320003,8549770422,10000)
-krishna=Bank('Krishna',5320004,7943408561,50000)
+    #Calculate Interest
+    @staticmethod
+    def interest(acct):
+        interest_amount = (5.0 / 100) * acct.balance
+        print(f"Interest for {acct.name}'s account: {interest_amount}")
+
+krishna = Bank('Krishna',5320001,7943408561,50000)
+radha   = Bank('Radha',5320002,8549770422,10000)
+ram     = Bank('Ram',5320003,7959253767,25000)
+sita    = Bank('Sita',5320004,9949658153,8000)
+siri    = Bank('Siri',5320005,6304258855,0)
