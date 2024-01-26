@@ -16,18 +16,20 @@ class  Bank:
     def deposit(self, cr_amount):
         self.balance += cr_amount                         
         print(cr_amount, ' Credited to your Account Successfully...')
+        print('Balance :',self.balance)
 
     #debit
     def withdraw(self, dr_amount):
         if dr_amount <= self.balance:                      
             self.balance -= dr_amount
             print(dr_amount, ' Debited fom Your Account!')
+            print('Balance :',self.balance)
         else:
             print('Insufficient Amount!')
         
     #transfer to other Account    
     def transfer(self, transfer_amt, recipient):
-        if transfer_amt > 0 and transfer_amt <= self.balance:
+        if  0 < transfer_amt <= self.balance:
             if recipient != self:
                 self.balance      -= transfer_amt            
                 recipient.balance += transfer_amt
@@ -56,7 +58,7 @@ class  Bank:
     #Account details
     @staticmethod
     def account(acn):
-        print(acn.bank_name,acn.ifsc,acn.branch,acn.name,
+        print(f'Details of {acn.name}',acn.bank_name,acn.ifsc,acn.branch,acn.name,
               acn.acct_no,acn.mobile,acn.balance,sep='\n')
 
     #Calculate Interest
