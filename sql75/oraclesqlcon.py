@@ -34,6 +34,7 @@ def read_record():
         data.writerow(['id','name'])
         for row in record:
             data.writerow(row)
+#read_record
 
 def insertdata():
     with open('record.csv','r',newline='') as file:
@@ -45,46 +46,46 @@ def insertdata():
         # for i in record:
         #     cr.execute("insert into neeraj75(id,name)  values(:id,:name)",i)
         #     conn.commit()
-insertdata()
+#insertdata()
 
 
 
-# def updaterecord(sid,name):
-#     record={'id':str(sid),'name':name}
-#     cr.execute("update neeraj75 set name=(:name)  where id=(:id)",record)
-#     conn.commit()
+def updaterecord(sid,name):
+    record={'id':str(sid),'name':name}
+    cr.execute("update neeraj75 set name=(:name)  where id=(:id)",record)
+    conn.commit()
 #updaterecord(2,'neeraj)
 
-# def fetch_record(sid):
-#     record={'id':str(sid)}
-#     query = 'select * from neeraj75 where id=:id'
-#     cr.execute(query,record)
-#     record=cr.fetchall()
-#     for row in record:
-#         print(row)
+def fetch_record(sid):
+    record={'id':str(sid)}
+    query = 'select * from neeraj75 where id=:id'
+    cr.execute(query,record)
+    record=cr.fetchall()
+    for row in record:
+        print(row)
 #fetch_record()
 
 
-# def updaterecord(sid):
-#     fetch_record(sid)
-#     name=input('enter new name to update: ')
-#     record={'id':str(sid),'name':name}
-#     query="update neeraj75 set name=(:name)  where id=:id"
-#     cr.execute(query,record)
-#     conn.commit()
-#     fetch_record(sid)
+def updaterecord(sid):
+    fetch_record(sid)
+    name=input('enter new name to update: ')
+    record={'id':str(sid),'name':name}
+    query="update neeraj75 set name=(:name)  where id=:id"
+    cr.execute(query,record)
+    conn.commit()
+    fetch_record(sid)
 #updaterecord()
 
 
-# def deleterecord(sid):
-#     record={'id':str(sid)}
-#     cr.execute("delete from neeraj75 where id=:id",record)
-#     conn.commit()
+def deleterecord(sid):
+    record={'id':str(sid)}
+    cr.execute("delete from neeraj75 where id=:id",record)
+    conn.commit()
 #deleterecord()
 
-# def truncate():
-#    query='truncate table neeraj75'
-#    cr.execute(query)
+def truncate():
+   query='truncate table neeraj75'
+   cr.execute(query)
 # truncate()  
 
 #def droptable()
